@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-leader
+  namespace: Guestbook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis-leader
+  template:
+    metadata:
+      labels:
+        app: redis-leader
+    spec:
+      containers:
+      - name: redis-leader
+        image: redis:6.0
+        ports:
+        - containerPort: 6379
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-follower
+  namespace: Guestbook
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: redis-follower
+  template:
+    metadata:
+      labels:
+        app: redis-follower
+    spec:
+      containers:
+      - name: redis-follower
+        image: redis:6.0
+        ports:
+        - containerPort: 6379
