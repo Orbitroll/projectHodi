@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: redis-leader
-        image: redis:6.0
+        image: mcp/redis
         ports:
         - containerPort: 6379
 ---
@@ -36,6 +36,6 @@ spec:
     spec:
       containers:
       - name: redis-follower
-        image: redis:6.0
+        image: mcp/redis
         ports:
         - containerPort: 6379
